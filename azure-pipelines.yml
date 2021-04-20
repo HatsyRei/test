@@ -6,9 +6,9 @@ variables:
   version.update: 0
   version.phase: d
   version.name: ${{ format('{0}.{1}.{2}{3}', variables['version.major'], variables['version.minor'], variables['version.update'], variables['version.phase']) }}
-  ${{ if eq(format('{0}.{1}.{2}{3}', variables['version.major'], variables['version.minor'], variables['version.update'], variables['version.phase']), '21.0.0d') }}:
+  ${{ if eq(format('{0}.{1}.{2}{3}', variables['version.major'], variables['version.minor'], variables['version.update'], variables['version.phase']), '21.0.1d') }}:
     version.revision: $[ counter(variables['version.name'], 53) ]
-  ${{ if eq(variables['version.name'], 'a') }}:
+  ${{ if ne(format('{0}.{1}.{2}{3}', variables['version.major'], variables['version.minor'], variables['version.update'], variables['version.phase']), '21.0.1d') }}:
     version.revision: $[ counter(variables['version.name'], 40) ]
   version: $[format('{0}{1}', variables['version.name'], variables['version.revision'])]
   buildsdk: ${{parameters.buildsdk}}
