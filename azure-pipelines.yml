@@ -7,9 +7,9 @@ variables:
   version.phase: d
   #version.name: ${{ format('{0}.{1}.{2}{3}', variables['version.major'], variables['version.minor'], variables['version.update'], variables['version.phase']) }}
   version.name: '21.0.0d'
-  ${{ if eq(variables['version.name'], '21.0.0d') }}:
+  ${{ if eq('21.0.0d', '21.0.0d') }}:
     version.revision: $[ counter(variables['version.name'], 53) ]
-  ${{ if ne(variables['version.name'], '21.0.0d') }}:
+  ${{ if ne('21.0.0d', '21.0.0d') }}:
     version.revision: $[ counter(variables['version.name'], 40) ]
   version: $[format('{0}{1}', variables['version.name'], variables['version.revision'])]
   buildsdk: ${{parameters.buildsdk}}
