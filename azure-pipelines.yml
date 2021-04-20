@@ -13,6 +13,7 @@ variables:
   version: $[format('{0}{1}', variables['version.name'], variables['version.revision'])]
   buildsdk: ${{parameters.buildsdk}}
   buildfeed: ${{parameters.buildfeed}}
+  isName: $[eq(variables['version.name'], '21.0.0d')]
 
 parameters:
   - name: buildsdk
@@ -31,4 +32,4 @@ pool:
   name: agates-test
 
 steps:
-- script: echo $(version.name)
+- script: echo $(isName)
