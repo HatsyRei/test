@@ -9,7 +9,7 @@ variables:
   version.name: vwef
   ${{ if eq(variables['version.name'], 'vwef') }}:
     version.revision: $[ counter(variables['version.name'], 53) ]
-  ${{ if ne(variables['version.name'], 's') }}:
+  ${{ if eq(variables['version.name'], '') }}:
     version.revision: $[ counter(variables['version.name'], 40) ]
   version: $[format('{0}{1}', variables['version.name'], variables['version.revision'])]
   buildsdk: ${{parameters.buildsdk}}
