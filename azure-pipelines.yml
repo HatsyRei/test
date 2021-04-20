@@ -6,10 +6,10 @@ variables:
   version.update: 0
   version.phase: d
   #version.name: ${{ format('{0}.{1}.{2}{3}', variables['version.major'], variables['version.minor'], variables['version.update'], variables['version.phase']) }}
-  version.name: 21.0.0d
-  ${{ if eq(variables['version.name'], '') }}:
+  version.name: vwef
+  ${{ if eq(variables['version.name'], 'vwef') }}:
     version.revision: $[ counter(variables['version.name'], 53) ]
-  ${{ if ne(variables['version.name'], '') }}:
+  ${{ if ne(variables['version.name'], 's') }}:
     version.revision: $[ counter(variables['version.name'], 40) ]
   version: $[format('{0}{1}', variables['version.name'], variables['version.revision'])]
   buildsdk: ${{parameters.buildsdk}}
