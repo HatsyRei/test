@@ -5,11 +5,10 @@ variables:
   version.minor: 0
   version.update: 0
   version.phase: d
-  version.name: $[format('{0}.{1}.{2}{3}', variables['version.major'], variables['version.minor'], variables['version.update'], variables['version.phase'])]
-  isName: ${{ variables['version.name'] }} 
-  ${{ if eq(variables['isName'], '21.0.0d') }}:
+  version.name: ${{ format('{0}.{1}.{2}{3}', variables['version.major'], variables['version.minor'], variables['version.update'], variables['version.phase']) }}
+  ${{ if eq(variables['version.name'], '21.0.0d') }}:
     version.revision: $[counter(variables['version.name'], 53)]
-  ${{ if ne(variables['isName'], '21.0.0d') }}:
+  ${{ if ne(variables['version.name'], '21.0.0d') }}:
     version.revision: $[counter(variables['version.name'], 40)]
   version: $[format('{0}{1}', variables['version.name'], variables['version.revision'])]
   buildsdk: ${{parameters.buildsdk}}
