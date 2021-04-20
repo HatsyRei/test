@@ -6,9 +6,9 @@ variables:
   version.update: 0
   version.phase: d
   version.name: $[format('{0}.{1}.{2}{3}', variables['version.major'], variables['version.minor'], variables['version.update'], variables['version.phase'])]
-  $[ if eq( variables['version.name'], '21.0.0d' ) ]:
+  ${{ if eq( variables['version.name'], '21.0.0d' ) }}:
     version.revision: $[counter(variables['version.name'], 53)]
-  $[ if ne( variables['version.name'], '21.0.0d' ) ]:
+  ${{ if ne( variables['version.name'], '21.0.0d' ) }}:
     version.revision: $[counter(variables['version.name'], 40)]
   version: $[format('{0}{1}', variables['version.name'], variables['version.revision'])]
   buildsdk: ${{parameters.buildsdk}}
@@ -31,10 +31,4 @@ pool:
   name: agates-test
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- script: echo $(version.name)
